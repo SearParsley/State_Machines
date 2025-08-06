@@ -13,10 +13,10 @@ abstract class StateMachine {
     fun getResult(): Boolean = currentState !is InvalidState
 }
 
-interface State {
-    fun processSymbol(symbol: String): State
+abstract class State {
+    abstract fun processSymbol(symbol: String): State
 }
 
-class InvalidState : State {
+class InvalidState : State() {
     override fun processSymbol(symbol: String): State = this
 }
