@@ -1,20 +1,24 @@
+interface ValidationStrategy {
+    val machine: StateMachine
+    fun preconditionsMet(input: String): Boolean = true
+}
+
 abstract class StateMachine {
     abstract var currentState: State
     abstract var isInvalid: Boolean
 
     fun processSymbol(symbol: String) {
-        if (isInvalid) return
-        currentState.processSymbol(this, symbol)
+        if (currentState is InvalidState) return
+        currentState = currentState.processSymbol(symbol)
     }
 
     abstract fun getResult(): Boolean
 }
 
 interface State {
-    fun processSymbol(machine: StateMachine, symbol: String)
+    fun processSymbol(symbol: String): State
 }
 
-interface ValidationStrategy {
-    val machine: StateMachine
-    fun passesChecks(input: String): Boolean = true
+class InvalidState : State {
+    override fun processSymbol(symbol: String): State = this
 }

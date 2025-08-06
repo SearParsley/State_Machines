@@ -13,8 +13,8 @@ class IntegerStateMachine : StateMachine() {
 }
 
 class IntegerStartState : State {
-    override fun processSymbol(machine: StateMachine, symbol: String) {
-        machine.currentState = when (symbol) {
+    override fun processSymbol(symbol: String): State {
+        return when (symbol) {
             in "123456789" -> IntegerAcceptState()
             else -> InvalidState()
         }
@@ -22,16 +22,10 @@ class IntegerStartState : State {
 }
 
 class IntegerAcceptState : State {
-    override fun processSymbol(machine: StateMachine, symbol: String) {
-        machine.currentState = when (symbol) {
+    override fun processSymbol(symbol: String): State {
+        return when (symbol) {
             in "0123456789" -> IntegerAcceptState()
             else -> InvalidState()
         }
-    }
-}
-
-class InvalidState : State {
-    override fun processSymbol(machine: StateMachine, symbol: String) {
-        machine.isInvalid = true
     }
 }

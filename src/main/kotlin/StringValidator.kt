@@ -7,7 +7,7 @@ class StringValidator(
 
     fun isValid(input: String): Boolean {
         val machine = strategy.machine
-        if (!strategy.passesChecks(input)) return false
+        if (!strategy.preconditionsMet(input)) return false
         for (char in input) {
             val symbol = char.toString()
             machine.processSymbol(symbol)
