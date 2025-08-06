@@ -4,15 +4,13 @@ interface ValidationStrategy {
 }
 
 abstract class StateMachine {
-    abstract var currentState: State
-    abstract var isInvalid: Boolean
+    protected abstract var currentState: State
 
     fun processSymbol(symbol: String) {
-        if (currentState is InvalidState) return
         currentState = currentState.processSymbol(symbol)
     }
 
-    abstract fun getResult(): Boolean
+    fun getResult(): Boolean = currentState !is InvalidState
 }
 
 interface State {

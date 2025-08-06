@@ -11,7 +11,6 @@ class StringValidator(
         for (char in input) {
             val symbol = char.toString()
             machine.processSymbol(symbol)
-            if (machine.isInvalid) return false
         }
         return machine.getResult()
     }

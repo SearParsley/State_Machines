@@ -4,12 +4,6 @@ class IntegerStrategy : ValidationStrategy {
 
 class IntegerStateMachine : StateMachine() {
     override var currentState: State = IntegerStartState()
-    override var isInvalid = false
-
-    override fun getResult(): Boolean {
-        return currentState is IntegerAcceptState
-    }
-
 }
 
 class IntegerStartState : State {
