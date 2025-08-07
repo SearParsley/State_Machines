@@ -33,6 +33,7 @@ class FloatingPointStrategyTest {
 
     @Test
     fun `should return false for non-digit characters`() {
+        assertFalse(validator.isValid("a1.2"), "Letters pre-decimal are invalid.")
         assertFalse(validator.isValid("1a.2"), "Letters pre-decimal are invalid.")
         assertFalse(validator.isValid("1.a2"), "Letters post-decimal are invalid.")
         assertFalse(validator.isValid("1.2-3"), "Symbols are invalid.")
