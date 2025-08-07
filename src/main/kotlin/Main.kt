@@ -13,6 +13,7 @@ fun main() {
 
             val input = readln()
             if (input.isEmpty()) break
+
             val strategy = when (input) {
                 in "1" -> IntegerStrategy()
                 in "2" -> FloatingPointStrategy()
@@ -23,6 +24,17 @@ fun main() {
             }
 
             validator.setStrategy(strategy)
+
+            val strategyName = when (input) {
+                in "1" -> "Integer"
+                in "2" -> "Floating Point"
+                in "3" -> "Binary"
+                in "4" -> "Email"
+                in "5" -> "Complex Password"
+                else -> "Integer"
+            }
+
+            println("Validator using $strategyName strategy.")
 
         } catch (e: Error) {
             println("Invalid input, defaulting to Integer strategy.")
