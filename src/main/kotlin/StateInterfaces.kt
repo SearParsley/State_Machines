@@ -3,15 +3,16 @@ interface ValidationStrategy {
     fun preconditionsMet(input: String): Boolean = true
 }
 
-class StateMachine(private val startState: State) {
+class StateMachine(private var startState: State) {
     private var currentState: State = startState
 
-    fun processSymbol(symbol: String) {
-        currentState = currentState.processSymbol(symbol)
-    }
-
+    fun processSymbol(symbol: String) { currentState = currentState.processSymbol(symbol) }
     fun getResult() = currentState is AcceptState
     fun reset() { currentState = startState }
+    fun resetWithStartState(newStartState: State) {
+        this.startState = newStartState
+        this.currentState = newStartState
+    }
 }
 
 abstract class State {

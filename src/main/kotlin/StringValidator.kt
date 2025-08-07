@@ -5,6 +5,7 @@ class StringValidator(
 
     fun setStrategy(strategy: ValidationStrategy) {
         this.strategy = strategy
+        machine.resetWithStartState(strategy.startState)
     }
 
     fun isValid(input: String): Boolean {
