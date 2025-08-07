@@ -2,8 +2,8 @@ class IntegerStrategy : ValidationStrategy {
     override val machine = IntegerStateMachine()
 }
 
-class IntegerStateMachine : StateMachine() {
-    override var currentState: State = IntegerStartState()
+class IntegerStateMachine : StateMachine(IntegerStartState()) {
+    override fun getResult(): Boolean = currentState is IntegerAcceptState
 }
 
 class IntegerStartState : State() {

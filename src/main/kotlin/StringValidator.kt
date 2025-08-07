@@ -12,6 +12,8 @@ class StringValidator(
             val symbol = char.toString()
             machine.processSymbol(symbol)
         }
-        return machine.getResult()
+        val result = machine.getResult()
+        machine.reset()
+        return result
     }
 }

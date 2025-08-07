@@ -3,14 +3,15 @@ interface ValidationStrategy {
     fun preconditionsMet(input: String): Boolean = true
 }
 
-abstract class StateMachine {
-    protected abstract var currentState: State
+abstract class StateMachine(private val startState: State) {
+    protected var currentState: State = startState
 
     fun processSymbol(symbol: String) {
         currentState = currentState.processSymbol(symbol)
     }
 
-    fun getResult(): Boolean = currentState !is InvalidState
+    abstract fun getResult(): Boolean
+    fun reset() { currentState = startState }
 }
 
 abstract class State {
