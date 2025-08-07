@@ -1,8 +1,6 @@
 class IntegerStrategy : ValidationStrategy {
-    override val machine = IntegerStateMachine()
+    override val machine = StateMachine(IntegerStartState())
 }
-
-class IntegerStateMachine : StateMachine(IntegerStartState())
 
 class IntegerStartState : State() {
     override fun processSymbol(symbol: String): State {

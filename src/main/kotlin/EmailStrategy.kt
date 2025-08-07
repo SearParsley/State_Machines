@@ -1,9 +1,7 @@
 class EmailStrategy : ValidationStrategy {
-    override val machine = EmailStateMachine()
+    override val machine = StateMachine(EmailStartState())
     override fun preconditionsMet(input: String): Boolean = input.contains(" ")
 }
-
-class EmailStateMachine : StateMachine(EmailStartState())
 
 class EmailStartState : State() {
     override fun processSymbol(symbol: String): State {

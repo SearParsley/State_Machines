@@ -1,9 +1,7 @@
 class ComplexPasswordStrategy : ValidationStrategy {
-    override val machine = ComplexPasswordStateMachine()
+    override val machine = StateMachine(ComplexPasswordStartState())
     override fun preconditionsMet(input: String): Boolean = input.length >= 8
 }
-
-class ComplexPasswordStateMachine : StateMachine(ComplexPasswordStartState())
 
 val capitalLetters = ('A'..'Z').joinToString("")
 const val specialChars = "!@#$%&*"

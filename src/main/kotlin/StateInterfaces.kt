@@ -3,9 +3,8 @@ interface ValidationStrategy {
     fun preconditionsMet(input: String): Boolean = true
 }
 
-abstract class StateMachine(private val startState: State) {
-    protected var currentState: State = startState
-        private set
+class StateMachine(private val startState: State) {
+    private var currentState: State = startState
 
     fun processSymbol(symbol: String) {
         currentState = currentState.processSymbol(symbol)
