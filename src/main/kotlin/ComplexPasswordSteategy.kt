@@ -57,7 +57,7 @@ class ComplexPasswordTrailingSpecialCharState : State() {
     }
 }
 
-class ComplexPasswordAcceptState : State() {
+class ComplexPasswordAcceptState : AcceptState() {
     override fun processSymbol(symbol: String): State {
         return when (symbol) {
             in specialChars -> ComplexPasswordTrailingSpecialCharState()

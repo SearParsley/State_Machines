@@ -22,3 +22,5 @@ abstract class State {
 class InvalidState : State() {
     override fun processSymbol(symbol: String): State = this
 }
+
+abstract class AcceptState: State()

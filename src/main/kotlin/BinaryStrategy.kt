@@ -25,7 +25,7 @@ class BinaryInternalState : State() {
     }
 }
 
-class BinaryAcceptState : State() {
+class BinaryAcceptState : AcceptState() {
     override fun processSymbol(symbol: String): State {
         return when (symbol) {
             in "0" -> BinaryInternalState()

@@ -54,7 +54,7 @@ class EmailPeriodState : State() {
     }
 }
 
-class EmailAcceptState : State() {
+class EmailAcceptState : AcceptState() {
     override fun processSymbol(symbol: String): State {
         return when (symbol) {
             in ".@" -> InvalidState()

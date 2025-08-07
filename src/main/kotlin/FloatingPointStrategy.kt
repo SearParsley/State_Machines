@@ -45,7 +45,7 @@ class FloatingPointDecimalState() : State() {
     }
 }
 
-class FloatingPointAcceptState() : State() {
+class FloatingPointAcceptState() : AcceptState() {
     override fun processSymbol(symbol: String): State {
         return when (symbol) {
             in "0123456789" -> FloatingPointAcceptState()
