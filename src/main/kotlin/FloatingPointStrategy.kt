@@ -1,5 +1,5 @@
 class FloatingPointStrategy : ValidationStrategy {
-    override val machine: StateMachine = StateMachine(FloatingPointStartState())
+    override val startState = FloatingPointStartState()
 }
 
 class FloatingPointStartState() : State() {

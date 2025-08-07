@@ -1,5 +1,5 @@
 class IntegerStrategy : ValidationStrategy {
-    override val machine = StateMachine(IntegerStartState())
+    override val startState = IntegerStartState()
 }
 
 class IntegerStartState : State() {

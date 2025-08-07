@@ -1,5 +1,5 @@
 class ComplexPasswordStrategy : ValidationStrategy {
-    override val machine = StateMachine(ComplexPasswordStartState())
+    override val startState = ComplexPasswordStartState()
     override fun preconditionsMet(input: String): Boolean = input.length >= 8
 }
 

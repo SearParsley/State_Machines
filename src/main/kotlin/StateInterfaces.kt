@@ -1,5 +1,5 @@
 interface ValidationStrategy {
-    val machine: StateMachine
+    val startState: State
     fun preconditionsMet(input: String): Boolean = true
 }
 

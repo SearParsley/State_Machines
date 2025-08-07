@@ -1,12 +1,13 @@
 class StringValidator(
     private var strategy: ValidationStrategy
 ) {
+    private val machine = StateMachine(strategy.startState)
+
     fun setStrategy(strategy: ValidationStrategy) {
         this.strategy = strategy
     }
 
     fun isValid(input: String): Boolean {
-        val machine = strategy.machine
         if (!strategy.preconditionsMet(input)) return false
         for (char in input) {
             val symbol = char.toString()

@@ -1,5 +1,5 @@
 class BinaryStrategy : ValidationStrategy {
-    override val machine = StateMachine(BinaryStartState())
+    override val startState = BinaryStartState()
 }
 
 class BinaryStartState : State() {
