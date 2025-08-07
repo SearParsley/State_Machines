@@ -1,5 +1,6 @@
 class EmailStrategy : ValidationStrategy {
     override val machine = EmailStateMachine()
+    override fun preconditionsMet(input: String): Boolean = input.contains(" ")
 }
 
 class EmailStateMachine : StateMachine(EmailStartState()) {
@@ -9,7 +10,7 @@ class EmailStateMachine : StateMachine(EmailStartState()) {
 class EmailStartState : State() {
     override fun processSymbol(symbol: String): State {
         return when (symbol) {
-            in ".@ " -> InvalidState()
+            in ".@" -> InvalidState()
             else -> EmailPartOneState()
         }
     }
@@ -19,7 +20,7 @@ class EmailPartOneState : State() {
     override fun processSymbol(symbol: String): State {
         return when (symbol) {
             in "@" -> EmailAtSymbolState()
-            in ". " -> InvalidState()
+            in "." -> InvalidState()
             else -> EmailPartOneState()
         }
     }
@@ -28,7 +29,7 @@ class EmailPartOneState : State() {
 class EmailAtSymbolState : State() {
     override fun processSymbol(symbol: String): State {
         return when (symbol) {
-            in ".@ " -> InvalidState()
+            in ".@" -> InvalidState()
             else -> EmailPartTwoState()
         }
     }
@@ -38,7 +39,7 @@ class EmailPartTwoState : State() {
     override fun processSymbol(symbol: String): State {
         return when (symbol) {
             in "." -> EmailPeriodState()
-            in "@ " -> InvalidState()
+            in "@" -> InvalidState()
             else -> EmailPartTwoState()
         }
     }
@@ -47,7 +48,7 @@ class EmailPartTwoState : State() {
 class EmailPeriodState : State() {
     override fun processSymbol(symbol: String): State {
         return when (symbol) {
-            in ".@ " -> InvalidState()
+            in ".@" -> InvalidState()
             else -> EmailAcceptState()
         }
     }
@@ -56,7 +57,7 @@ class EmailPeriodState : State() {
 class EmailAcceptState : State() {
     override fun processSymbol(symbol: String): State {
         return when (symbol) {
-            in ".@ " -> InvalidState()
+            in ".@" -> InvalidState()
             else -> EmailAcceptState()
         }
     }
