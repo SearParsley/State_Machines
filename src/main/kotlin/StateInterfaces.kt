@@ -5,6 +5,7 @@ interface ValidationStrategy {
 
 abstract class StateMachine(private val startState: State) {
     protected var currentState: State = startState
+        private set
 
     fun processSymbol(symbol: String) {
         currentState = currentState.processSymbol(symbol)
