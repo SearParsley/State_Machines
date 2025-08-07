@@ -14,7 +14,7 @@ class IntegerStartState : State() {
 class IntegerAcceptState : AcceptState() {
     override fun processSymbol(symbol: String): State {
         return when (symbol) {
-            in "0123456789" -> IntegerAcceptState()
+            in "0123456789" -> this
             else -> InvalidState()
         }
     }
