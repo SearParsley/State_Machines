@@ -1,9 +1,5 @@
 class BinaryStrategy : ValidationStrategy {
-    override val machine = BinaryStateMachine()
-}
-
-class BinaryStateMachine : StateMachine(BinaryStartState()) {
-    override fun getResult(): Boolean = currentState is BinaryAcceptState
+    override val startState = BinaryStartState()
 }
 
 class BinaryStartState : State() {
@@ -25,7 +21,7 @@ class BinaryInternalState : State() {
     }
 }
 
-class BinaryAcceptState : State() {
+class BinaryAcceptState : AcceptState() {
     override fun processSymbol(symbol: String): State {
         return when (symbol) {
             in "0" -> BinaryInternalState()

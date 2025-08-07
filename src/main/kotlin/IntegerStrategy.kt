@@ -1,9 +1,5 @@
 class IntegerStrategy : ValidationStrategy {
-    override val machine = IntegerStateMachine()
-}
-
-class IntegerStateMachine : StateMachine(IntegerStartState()) {
-    override fun getResult(): Boolean = currentState is IntegerAcceptState
+    override val startState = IntegerStartState()
 }
 
 class IntegerStartState : State() {
@@ -15,7 +11,7 @@ class IntegerStartState : State() {
     }
 }
 
-class IntegerAcceptState : State() {
+class IntegerAcceptState : AcceptState() {
     override fun processSymbol(symbol: String): State {
         return when (symbol) {
             in "0123456789" -> IntegerAcceptState()

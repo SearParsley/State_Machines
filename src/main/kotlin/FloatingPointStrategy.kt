@@ -1,9 +1,5 @@
 class FloatingPointStrategy : ValidationStrategy {
-    override val machine: StateMachine = FloatingPointStateMachine()
-}
-
-class FloatingPointStateMachine() : StateMachine(FloatingPointStartState()) {
-    override fun getResult(): Boolean = currentState is FloatingPointAcceptState
+    override val startState = FloatingPointStartState()
 }
 
 class FloatingPointStartState() : State() {
@@ -45,7 +41,7 @@ class FloatingPointDecimalState() : State() {
     }
 }
 
-class FloatingPointAcceptState() : State() {
+class FloatingPointAcceptState() : AcceptState() {
     override fun processSymbol(symbol: String): State {
         return when (symbol) {
             in "0123456789" -> FloatingPointAcceptState()
