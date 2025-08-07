@@ -1,5 +1,6 @@
 class FloatingPointStrategy : ValidationStrategy {
     override val startState = FloatingPointStartState()
+    override fun preconditionsMet(input: String): Boolean = !input.contains(" ")
 }
 
 class FloatingPointStartState() : State() {

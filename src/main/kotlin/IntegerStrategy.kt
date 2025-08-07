@@ -1,5 +1,6 @@
 class IntegerStrategy : ValidationStrategy {
     override val startState = IntegerStartState()
+    override fun preconditionsMet(input: String): Boolean = !input.contains(" ")
 }
 
 class IntegerStartState : State() {

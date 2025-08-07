@@ -1,6 +1,6 @@
 class ComplexPasswordStrategy : ValidationStrategy {
     override val startState = ComplexPasswordStartState()
-    override fun preconditionsMet(input: String): Boolean = input.length >= 8
+    override fun preconditionsMet(input: String): Boolean = input.length >= 8 && !input.contains(" ")
 }
 
 val capitalLetters = ('A'..'Z').joinToString("")

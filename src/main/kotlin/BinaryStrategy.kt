@@ -1,5 +1,6 @@
 class BinaryStrategy : ValidationStrategy {
     override val startState = BinaryStartState()
+    override fun preconditionsMet(input: String): Boolean = !input.contains(" ")
 }
 
 class BinaryStartState : State() {
