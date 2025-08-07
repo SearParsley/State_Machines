@@ -3,6 +3,10 @@ interface ValidationStrategy {
     fun preconditionsMet(input: String): Boolean = true
 }
 
+fun createStateMachine(startState: State): StateMachine {
+    return StateMachine(startState)
+}
+
 class StateMachine(private var startState: State) {
     private var currentState: State = startState
 

@@ -1,6 +1,6 @@
 class ComplexPasswordStrategy : ValidationStrategy {
     override val startState = ComplexPasswordStartState()
-    override fun preconditionsMet(input: String): Boolean = input.length >= 8
+    override fun preconditionsMet(input: String): Boolean = input.length >= 8 && !input.contains(" ")
 }
 
 val capitalLetters = ('A'..'Z').joinToString("")
@@ -21,7 +21,7 @@ class ComplexPasswordSimpleState : State() {
         return when (symbol) {
             in specialChars -> ComplexPasswordSpecialCharState()
             in capitalLetters -> ComplexPasswordCapitalLetterState()
-            else -> ComplexPasswordSimpleState()
+            else -> this
         }
     }
 }
@@ -30,7 +30,7 @@ class ComplexPasswordCapitalLetterState : State() {
     override fun processSymbol(symbol: String): State {
         return when (symbol) {
             in specialChars -> ComplexPasswordTrailingSpecialCharState()
-            else -> ComplexPasswordCapitalLetterState()
+            else -> this
         }
     }
 }
@@ -39,7 +39,7 @@ class ComplexPasswordSpecialCharState : State() {
     override fun processSymbol(symbol: String): State {
         return when (symbol) {
             in capitalLetters -> ComplexPasswordAcceptState()
-            else -> ComplexPasswordSpecialCharState()
+            else -> this
         }
     }
 }
@@ -47,7 +47,7 @@ class ComplexPasswordSpecialCharState : State() {
 class ComplexPasswordTrailingSpecialCharState : State() {
     override fun processSymbol(symbol: String): State {
         return when (symbol) {
-            in specialChars -> ComplexPasswordTrailingSpecialCharState()
+            in specialChars -> this
             else -> ComplexPasswordAcceptState()
         }
     }
@@ -57,7 +57,7 @@ class ComplexPasswordAcceptState : AcceptState() {
     override fun processSymbol(symbol: String): State {
         return when (symbol) {
             in specialChars -> ComplexPasswordTrailingSpecialCharState()
-            else -> ComplexPasswordAcceptState()
+            else -> this
         }
     }
 }

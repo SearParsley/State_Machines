@@ -1,5 +1,6 @@
 class BinaryStrategy : ValidationStrategy {
     override val startState = BinaryStartState()
+    override fun preconditionsMet(input: String): Boolean = !input.contains(" ")
 }
 
 class BinaryStartState : State() {
@@ -14,8 +15,8 @@ class BinaryStartState : State() {
 class BinaryInternalState : State() {
     override fun processSymbol(symbol: String): State {
         return when (symbol) {
+            in "0" -> this
             in "1" -> BinaryAcceptState()
-            in "0" -> BinaryInternalState()
             else -> InvalidState()
         }
     }
@@ -25,7 +26,7 @@ class BinaryAcceptState : AcceptState() {
     override fun processSymbol(symbol: String): State {
         return when (symbol) {
             in "0" -> BinaryInternalState()
-            in "1" -> BinaryAcceptState()
+            in "1" -> this
             else -> InvalidState()
         }
     }
