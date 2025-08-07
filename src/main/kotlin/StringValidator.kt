@@ -1,7 +1,8 @@
 class StringValidator(
-    private var strategy: ValidationStrategy
+    private var strategy: ValidationStrategy,
+    private val createStateMachine: (State) -> StateMachine = ::createStateMachine
 ) {
-    private val machine = StateMachine(strategy.startState)
+    private val machine = createStateMachine(strategy.startState)
 
     fun setStrategy(strategy: ValidationStrategy) {
         this.strategy = strategy
