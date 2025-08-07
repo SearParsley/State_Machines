@@ -2,9 +2,7 @@ class FloatingPointStrategy : ValidationStrategy {
     override val machine: StateMachine = FloatingPointStateMachine()
 }
 
-class FloatingPointStateMachine() : StateMachine(FloatingPointStartState()) {
-    override fun getResult(): Boolean = currentState is FloatingPointAcceptState
-}
+class FloatingPointStateMachine() : StateMachine(FloatingPointStartState())
 
 class FloatingPointStartState() : State() {
     override fun processSymbol(symbol: String): State {

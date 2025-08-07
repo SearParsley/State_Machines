@@ -11,7 +11,7 @@ abstract class StateMachine(private val startState: State) {
         currentState = currentState.processSymbol(symbol)
     }
 
-    abstract fun getResult(): Boolean
+    fun getResult() = currentState is AcceptState
     fun reset() { currentState = startState }
 }
 

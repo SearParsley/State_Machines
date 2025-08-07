@@ -2,9 +2,7 @@ class BinaryStrategy : ValidationStrategy {
     override val machine = BinaryStateMachine()
 }
 
-class BinaryStateMachine : StateMachine(BinaryStartState()) {
-    override fun getResult(): Boolean = currentState is BinaryAcceptState
-}
+class BinaryStateMachine : StateMachine(BinaryStartState())
 
 class BinaryStartState : State() {
     override fun processSymbol(symbol: String): State {

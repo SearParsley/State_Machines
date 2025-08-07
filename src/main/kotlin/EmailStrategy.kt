@@ -3,9 +3,7 @@ class EmailStrategy : ValidationStrategy {
     override fun preconditionsMet(input: String): Boolean = input.contains(" ")
 }
 
-class EmailStateMachine : StateMachine(EmailStartState()) {
-    override fun getResult(): Boolean = currentState is EmailAcceptState
-}
+class EmailStateMachine : StateMachine(EmailStartState())
 
 class EmailStartState : State() {
     override fun processSymbol(symbol: String): State {
