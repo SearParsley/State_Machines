@@ -1,10 +1,10 @@
 fun main() {
-    val strategy = FloatingPointStrategy()
+    val strategy = EmailStrategy()
     val validator = StringValidator(strategy)
 
     while (true) {
-        println("Using floating point strategy, enter string (empty string to exit):")
-        val input = readln().trim()
+        println("Using email strategy, enter string (empty string to exit):")
+        val input = readln()
         if (input.isEmpty()) break
         val result = validator.isValid(input)
         println(result)
