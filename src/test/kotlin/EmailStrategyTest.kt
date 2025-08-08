@@ -11,6 +11,7 @@ class EmailStrategyTest {
     @Test
     fun `should return true for valid emails`() {
         assertTrue(validator.isValid("test@example.com"), "A standard email should be valid.")
+        assertTrue(validator.isValid("test.test@example.com"), "A standard email should be valid.")
         assertTrue(validator.isValid("a@b.c"), "A minimal email should be valid.")
         assertTrue(validator.isValid("test@example.co"), "A two-letter TLD should be valid.")
     }
@@ -37,14 +38,9 @@ class EmailStrategyTest {
         assertFalse(validator.isValid("tes t@example.com"), "Email with an internal space is invalid.")
         assertFalse(validator.isValid("test @example.com"), "Email with an internal space is invalid.")
         assertFalse(validator.isValid("test@ example.com"), "Email with an internal space is invalid.")
-        assertFalse(validator.isValid("test @ex ample.com"), "Email with an internal space is invalid.")
+        assertFalse(validator.isValid("test@ex ample.com"), "Email with an internal space is invalid.")
         assertFalse(validator.isValid("test@example .com"), "Email with an internal space is invalid.")
         assertFalse(validator.isValid("test@example. com"), "Email with an internal space is invalid.")
         assertFalse(validator.isValid("test@example.co m"), "Email with an internal space is invalid.")
-    }
-
-    @Test
-    fun `should return false for emails with periods in the local-part`() {
-        assertFalse(validator.isValid("first.last@example.com"), "Periods in the local-part are invalid by this strategy.")
     }
 }

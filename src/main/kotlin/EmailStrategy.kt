@@ -16,7 +16,6 @@ class EmailPartOneState : State() {
     override fun processSymbol(symbol: String): State {
         return when (symbol) {
             in "@" -> EmailAtSymbolState()
-            in "." -> InvalidState()
             else -> this
         }
     }
